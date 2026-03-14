@@ -1,27 +1,30 @@
-# GMT: Goal-Conditioned Multimodal Transformer for 6-DOF Object Trajectory Synthesis in 3D Scenes
+<p align="center">
+  <h1 align="center"><strong>GMT: Goal-Conditioned Multimodal Transformer for 6-DOF Object Trajectory Synthesis in 3D Scenes</strong></h1>
+  <p align="center">
+    <a href="https://huajian-zeng.github.io/">Huajian Zeng</a><sup>1,4</sup>, <a href="https://cvg.cit.tum.de/members/saroha">Abhishek Saroha</a><sup>1,2</sup>, <a href="https://vision.in.tum.de/members/cremers">Daniel Cremers</a><sup>1,2</sup>, <a href="https://xiwang1212.github.io/homepage/">Xi Wang</a><sup>1,2,3</sup>
+    <br>
+    <sup>1</sup>Technical University of Munich (TUM), <sup>2</sup>Munich Center for Machine Learning (MCML), <sup>3</sup>ETH Zürich, <sup>4</sup>Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)
+    <br>
+  </p>
 
-<!-- <div align="center">
+  <p align="center"><strong>3DV 2026</strong></p>
+</p>
 
-[![Project Page](https://img.shields.io/badge/Project-Website-green.svg)](https://fwmb.github.io/anycam)
-[![arXiv](https://img.shields.io/badge/Arxiv-2503.23282-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2503.23282)
+<div id="top" align="center">
 
-**[Felix Wimbauer](https://fwmb.github.io/)**,
-**[Weirong Chen](https://wrchen530.github.io/)**,
-**[Dominik Muhle](https://dominikmuhle.github.io/)**,
-**[Christian Rupprecht](https://chrirupp.github.io/)**,
-**[Daniel Cremers](https://cvg.cit.tum.de/members/cremers)**
+[![PDF](https://img.shields.io/badge/PDF-%F0%9F%93%84-green)](https://huajian-zeng.github.io/projects/gmt/3dv2026_arxiv.pdf)
+[![Homepage](https://img.shields.io/badge/Homepage-%F0%9F%8C%90-blue)](https://huajian-zeng.github.io/projects/gmt/)
+[![Video](https://img.shields.io/badge/Video-%E2%96%B6-red?logo=youtube&logoColor=red)](https://www.youtube.com/watch?v=uYZzJsfn_T4&feature=youtu.be)
 
-<img src="assets/teaser_v2.gif" alt="Teaser Image" style="width: 100%;">
 </div>
 
-This is the official implementation for the CVPR 2025 paper:
 
-> **AnyCam: Learning to Recover Camera Poses and Intrinsics from Casual Videos**
->
-> [Felix Wimbauer](https://fwmb.github.io/)<sup>1,2,3</sup>, [Weirong Chen](https://wrchen530.github.io/)<sup>1,2,3</sup>, [Dominik Muhle](https://dominikmuhle.github.io/)<sup>1,2</sup>, [Christian Rupprecht](https://chrirupp.github.io/)<sup>3</sup>, and [Daniel Cremers](https://cvg.cit.tum.de/members/cremers)<sup>1,2</sup><br>
-> <sup>1</sup>Technical University of Munich, <sup>2</sup>MCML, <sup>3</sup>University of Oxford
-> 
-> [**CVPR 2025** (arXiv)](https://arxiv.org/abs/2503.23282) -->
+## 🔥 Highlight <a name="highlight"></a>
+
+**GMT** is a goal-conditioned multimodal transformer that synthesizes physically plausible 6-DOF object trajectories in 3D scenes from egocentric observations.
+
+By leveraging multimodal conditioning — combining 3D scene geometry, egocentric video features, and goal specifications — GMT generates temporally coherent and spatially accurate object motion sequences.
+
 
 ## Installation
 
@@ -49,8 +52,8 @@ This is the official implementation for the CVPR 2025 paper:
     pip install -r requirements.txt
     pip install -e .
     # [IMPORTANT] you need to change l196-198 of file `[PATH-TO-VENV]/lib64/python3.9/site-packages/pointnet2_ops/pointnet2_modules.py` to `interpolated_feats = known_feats.repeat(1, 1, unknown.shape[1])`)
-
     ```
+
 ## Dataset Preparation
 
 - Option 1: Download preprocessed cache files by running the following command:
@@ -72,7 +75,7 @@ Please follow the instructions in the [ADT official website](https://www.project
             ...
     ```
 
-## Download pretrained checkpoint
+## Download Pretrained Checkpoint
 ```bash
 bash scripts/download_pretrained.sh
 ```
@@ -90,9 +93,9 @@ bash demo.sh
 ### Training on ADT dataset:
 
 ```bash
-python -m scripts.train --adt_dataroot <path_to_raw_data> 
+python -m scripts.train --adt_dataroot <path_to_raw_data>
 ```
-you may also define:
+You may also define:
 - `--global_cache_dir`: path to the trajectory cache directory. If not provided, it will be created in the `save_path` directory.
 - `--save_path`: path to save training results.
 - `--exp_name`: experiment name for checkpoint folder.
@@ -102,17 +105,25 @@ you may also define:
 ## Evaluation
 
 ```bash
-python -m scripts.eval \ 
+python -m scripts.eval \
     --adt_dataroot <path_to_raw_data> \
-    --model_path <path_to_trained_model_checkpoint> 
+    --model_path <path_to_trained_model_checkpoint>
 ```
 
 You may also define:
 - `--global_cache_dir`: path to the trajectory cache directory.
-- `--max_eval_samples` : maximum number of evaluation samples. Default is -1 (use all samples).
+- `--max_eval_samples`: maximum number of evaluation samples. Default is -1 (use all samples).
 
 ## Citation
 If you find this repository useful for your research, please consider citing:
+```bibtex
+@inproceedings{zeng2026gmt,
+  title     = {{GMT}: Goal-Conditioned Multimodal Transformer for 6-DOF Object Trajectory Synthesis in 3D Scenes},
+  author    = {Zeng, Huajian and Saroha, Abhishek and Cremers, Daniel and Wang, Xi},
+  booktitle = {International Conference on 3D Vision (3DV)},
+  year      = {2026},
+}
+```
 
 ## Acknowledgements
 We adapted code from several excellent repositories, including:
