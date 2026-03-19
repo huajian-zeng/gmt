@@ -12,6 +12,7 @@
 
 <div id="top" align="center">
 
+[![arXiv](https://img.shields.io/badge/Arxiv-2603.17993-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2603.17993)
 [![PDF](https://img.shields.io/badge/PDF-%F0%9F%93%84-green)](https://huajian-zeng.github.io/projects/gmt/3dv2026_arxiv.pdf)
 [![Homepage](https://img.shields.io/badge/Homepage-%F0%9F%8C%90-blue)](https://huajian-zeng.github.io/projects/gmt/)
 [![Video](https://img.shields.io/badge/Video-%E2%96%B6-red?logo=youtube&logoColor=red)](https://www.youtube.com/watch?v=uYZzJsfn_T4&feature=youtu.be)
