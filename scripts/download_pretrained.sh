@@ -1,20 +1,23 @@
 #!/bin/bash
 
-# Download pretrained models from Google Drive
+# Download the pretrained GMT checkpoint from Hugging Face.
 # Usage: bash scripts/download_pretrained.sh
 
 set -e
 
-SAVE_DIR="pretrained"
-mkdir -p ${SAVE_DIR}
+REPO_ID="huajian-zeng/gmt-adt"
+SAVE_DIR="pretrained/adt"
+mkdir -p "${SAVE_DIR}"
 
-ZIP_FILE_ID="1fqdo3MwRGsW_Y0OF5i80-UX2tJmXelBr"
-ZIP_FILE_NAME="pretrained_models.zip"
-echo "Downloading pretrained models..."
-gdown --id ${ZIP_FILE_ID} -O ${SAVE_DIR}/${ZIP_FILE_NAME}
+echo "Downloading pretrained GMT checkpoint from https://huggingface.co/${REPO_ID} ..."
+python - <<PY
+from huggingface_hub import snapshot_download
+snapshot_download(
+    repo_id="${REPO_ID}",
+    repo_type="model",
+    local_dir="${SAVE_DIR}",
+    allow_patterns=["adt.pth", "val_sequences.txt"],
+)
+PY
 
-echo "Extracting..."
-unzip -o ${SAVE_DIR}/${ZIP_FILE_NAME} -d ${SAVE_DIR}
-rm ${SAVE_DIR}/${ZIP_FILE_NAME}
-
-echo "Done! Models saved to ${SAVE_DIR}/"
+echo "Done! Checkpoint saved to ${SAVE_DIR}/adt.pth"

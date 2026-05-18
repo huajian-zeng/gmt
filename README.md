@@ -16,6 +16,8 @@
 [![PDF](https://img.shields.io/badge/PDF-%F0%9F%93%84-green)](https://huajian-zeng.github.io/projects/gmt/3dv2026_arxiv.pdf)
 [![Homepage](https://img.shields.io/badge/Homepage-%F0%9F%8C%90-blue)](https://huajian-zeng.github.io/projects/gmt/)
 [![Video](https://img.shields.io/badge/Video-%E2%96%B6-red?logo=youtube&logoColor=red)](https://www.youtube.com/watch?v=uYZzJsfn_T4&feature=youtu.be)
+[![HF Model](https://img.shields.io/badge/%F0%9F%A4%97%20Model-gmt--adt-yellow)](https://huggingface.co/huajian-zeng/gmt-adt)
+[![HF Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-gmt--adt--cache-yellow)](https://huggingface.co/datasets/huajian-zeng/gmt-adt-cache)
 
 </div>
 
@@ -57,7 +59,7 @@ By leveraging multimodal conditioning — combining 3D scene geometry, egocentri
 
 ## Dataset Preparation
 
-- Option 1: Download preprocessed cache files by running the following command:
+- Option 1: Download the preprocessed cache from Hugging Face ([huajian-zeng/gmt-adt-cache](https://huggingface.co/datasets/huajian-zeng/gmt-adt-cache)) by running:
     ```bash
     bash scripts/download_adt_cache.sh
     ```
@@ -77,9 +79,14 @@ Please follow the instructions in the [ADT official website](https://www.project
     ```
 
 ## Download Pretrained Checkpoint
+
+The pretrained GMT checkpoint is hosted on Hugging Face at [huajian-zeng/gmt-adt](https://huggingface.co/huajian-zeng/gmt-adt). Fetch it with:
+
 ```bash
 bash scripts/download_pretrained.sh
 ```
+
+This places the checkpoint at `pretrained/adt/adt.pth`, matching the path used by `demo.sh`.
 
 ## Quick Start
 

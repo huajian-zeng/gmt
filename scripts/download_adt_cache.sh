@@ -1,22 +1,23 @@
 #!/bin/bash
 
-# Download ADT dataset cache from Google Drive
+# Download the preprocessed ADT trajectory cache from Hugging Face.
 # Usage: bash scripts/download_adt_cache.sh
 
 set -e
 
+REPO_ID="huajian-zeng/gmt-adt-cache"
 SAVE_DIR="adt_cache"
-mkdir -p ${SAVE_DIR}
+mkdir -p "${SAVE_DIR}"
 
-# TODO: Replace with actual Google Drive file ID
-ZIP_FILE_ID="1xuulpXEEJ3VweXH_8BWv8S4H-LBv63nK"
-ZIP_FILE_NAME="adt_cache.zip"
-
-echo "Downloading ADT dataset cache..."
-gdown --id ${ZIP_FILE_ID} -O ${SAVE_DIR}/${ZIP_FILE_NAME}
-
-echo "Extracting..."
-unzip -o ${SAVE_DIR}/${ZIP_FILE_NAME} -d ${SAVE_DIR}
-rm ${SAVE_DIR}/${ZIP_FILE_NAME}
+echo "Downloading ADT cache from https://huggingface.co/datasets/${REPO_ID} ..."
+python - <<PY
+from huggingface_hub import snapshot_download
+snapshot_download(
+    repo_id="${REPO_ID}",
+    repo_type="dataset",
+    local_dir="${SAVE_DIR}",
+    allow_patterns=["*.pkl"],
+)
+PY
 
 echo "Done! Cache saved to ${SAVE_DIR}/"
